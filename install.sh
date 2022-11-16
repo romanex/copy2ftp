@@ -23,7 +23,7 @@ FTPUSER=$MYUSER
 FTPPASSWD=$MYPASSWD
 
 # User vars
-SOURCEFOLDER='/tmp'
+SOURCEFOLDER='/folder/obmen/'
 FTPFOLDER='public_html'
 FILE='rozetka.xml'
 
