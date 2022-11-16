@@ -26,7 +26,6 @@ FTPPASSWD=$MYPASSWD
 SOURCEFOLDER='/tmp'
 FTPFOLDER='public_html'
 FILE='rozetka.xml'
-FILEPATH='/tmp/'
 
 # Creating script folder
 echo "Creating script folder..."
@@ -49,7 +48,7 @@ TIMESTAMP=\`date "+%Y-%m-%d %H:%M:%S"\`
 LOGFILE='/var/log/send2rozetka.log'
 cd $SOURCEFOLDER
 
-if [ -f "$FILEPATH$FILE" ]; then
+if [ -f "$SOURCEFOLDER$FILE" ]; then
 echo "\$TIMESTAMP File $FILE uploading...." >> $LOGFILE
 ftp -n $FTPHOST <<END_SCRIPT
 quote USER $FTPUSER
