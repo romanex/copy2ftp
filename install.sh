@@ -1,4 +1,36 @@
-#!/bin/sh
+#!/bin/bash
+
+# Check requiments
+
+# Check root rights
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+# Check ftp client been installed
+if ! command -v ftp &> /dev/null
+then
+cat << EOF
+Please install FTP client using your distribution package manager
+For RPM-based distribution use sudo yum -y install ftp
+For DEB-based distribution use sudo apt update && sudo apt -y install ftp
+EOF
+exit
+fi
+
+# Check file with credentials
+if [ ! -f ./env ]; then
+cat << EOF
+Please add a file "env" with credentials like this into script directory
+...
+MYHOST='ftp.myftp.com'
+MYUSER='ftp2site@myftp.com'
+MYPASSWD='fgvtGNxdfXMi'
+...
+EOF
+exit
+fi
 
 export $(xargs < ./env)
 
@@ -67,13 +99,12 @@ EOF
 chmod +x $SCRIPTFILE
 fi
 
-
 # Add cron job...
 echo "Creating cron job..."
 #write out current crontab
 crontab -l > tmpcron
 #echo new cron into cron file
-echo "$SCHEDULER root $SCRIPTFILE" >> tmpcron
+echo "$SCHEDULER $SCRIPTFILE" >> tmpcron
 #install new cron file
 crontab tmpcron
 rm tmpcron

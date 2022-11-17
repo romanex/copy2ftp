@@ -1,0 +1,19 @@
+How to use
+1 Clone a repository to your host
+2 Add "env" file to scripts directory like
+  ...
+  MYHOST='ftp.myftp.com'
+  MYUSER='ftp2site@myftp.com'
+  MYPASSWD='fgvtGNxdfXMi'
+  ... 
+3 Change environments variable in scripts
+4 Make script executable running sudo chmod +x ./install.sh
+5 Run the script ./install.sh
+
+
+What does it do?
+
+1 Checking for necessary components
+2 Coping script to folder
+3 Making a log file
+4 Setup a cron job 
